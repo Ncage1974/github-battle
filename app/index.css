@@ -1,3 +1,8 @@
 body {
-    background: green;
+    font-family: -apple-system,blinkMacSystemFont,SegoeUI,Roboto,Oxyygen-Sans,Ubuntu,Cantarell,Helvetica,Neue,sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
 }
