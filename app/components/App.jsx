@@ -6,6 +6,7 @@ var Route = ReactRouter.Route;
 var Nav = require('./Nav.jsx');
 var Home = require('./Home.jsx');
 var Battle = require('./Battle.jsx');
+var Switch = ReactRouter.Switch;
 
 
 class App extends React.Component {
@@ -14,9 +15,11 @@ class App extends React.Component {
             <Router>
                 <div className='container'>
                     <Nav />
-                    <Route exact path='/' component={Home} />
-                    <Route path='/battle' component={Battle} />
-                    <Route path='/popular' component={Popular} />
+                    <Switch>
+                        <Route exact path='/' component={Home} />
+                        <Route path='/battle' component={Battle} />
+                        <Route path='/popular' component={Popular} />
+                    </Switch>
                 </div>
             </Router>
 
