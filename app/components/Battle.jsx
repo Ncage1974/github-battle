@@ -2,7 +2,7 @@ var React = require('react');
 
 
 class Battle extends React.Component {
-    Render() {
+    render() {
         return (
             <div>
                 Battle!!
