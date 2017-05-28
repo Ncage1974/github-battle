@@ -3,14 +3,15 @@ var Popular = require('./Popular.jsx');
 var ReactRouter = require('react-router-dom');
 var Router = ReactRouter.BrowserRouter;
 var Route = ReactRouter.Route;
-
+var Nav = require('./Nav.jsx');
 
 class App extends React.Component {
     render() {
         return (
             <Router>
                 <div className='container'>
-                    <Popular />
+                    <Nav />
+                    <Route path='/popular' component={Popular} />
                 </div>
             </Router>
 
