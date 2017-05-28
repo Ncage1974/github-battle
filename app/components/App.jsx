@@ -4,6 +4,8 @@ var ReactRouter = require('react-router-dom');
 var Router = ReactRouter.BrowserRouter;
 var Route = ReactRouter.Route;
 var Nav = require('./Nav.jsx');
+var Home = require('./Home.jsx');
+
 
 class App extends React.Component {
     render() {
@@ -11,6 +13,7 @@ class App extends React.Component {
             <Router>
                 <div className='container'>
                     <Nav />
+                    <Route exact path='/' component={Home} />
                     <Route path='/popular' component={Popular} />
                 </div>
             </Router>
