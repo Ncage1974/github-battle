@@ -1,6 +1,35 @@
 var React = require('react');
 var PropTypes = require('prop-types');
 
+function PlayerPreview(props) {
+    debugger;
+    return (
+        
+        <div>
+            <div className='column'>
+                <img
+                    className='avatar'
+                    src={props.avatar}
+                    alt={`Avatar for ${props.username}`}
+                />
+                <h2 className='username'>@{props.username}</h2>
+            </div>
+            <button
+                className='reset'
+                onClick={props.onReset(null, props.id)}>
+                Reset
+            </button>
+        </div>
+    )
+}
+
+PlayerPreview.propTypes = {
+    avatar: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    onReset: PropTypes.func.isRequired
+}
+
 class PlayerInput extends React.Component {
     constructor(props) {
         super(props);
@@ -15,7 +44,7 @@ class PlayerInput extends React.Component {
 
     handleChange(event) {
         let value = event.target.value;
-        
+
         this.setState(() => {
             return {
                 username: value
@@ -26,7 +55,7 @@ class PlayerInput extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         debugger;
-        this.props.onSubmit(this.props.id,this.state.username);
+        this.props.onSubmit(this.props.id, this.state.username);
     }
 
     render() {
@@ -35,14 +64,14 @@ class PlayerInput extends React.Component {
                 <label className='header' htmlFor='username'>
                     {this.props.label}
                 </label>
-                <input 
+                <input
                     id='username'
                     placeholder='github username'
                     type='text'
                     autoComplete='off'
                     value={this.state.username}
                     onChange={this.handleChange}
-                    />
+                />
                 <button className='button' type='submit' disabled={!this.state.username}>
                     Submit
                 </button>
@@ -60,7 +89,7 @@ PlayerInput.propTypes = {
 
 
 class Battle extends React.Component {
-   
+
     constructor(props) {
         super(props);
 
@@ -72,37 +101,64 @@ class Battle extends React.Component {
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleReset = this.handleReset.bind(this);
     }
 
     handleSubmit(id, username) {
-        debugger;
-        this.setState(()=> {
+       
+        this.setState(() => {
             var newstate = {};
             newstate[id + 'Name'] = username;
             newstate[id + 'Image'] = 'https://github.com/' + username + '.png?size=200';
             return newstate;
         })
     }
+
+    handleReset(id) {
+        this.setState(()=> {
+            var newstate = {};
+            newstate[id + 'Name'] = '';
+            newstate[id + 'Image'] = null;
+            return newstate;
+        })
+    }
+
     render() {
-        let playerOneName =  this.state.playerOneName;
+        let playerOneName = this.state.playerOneName;
         let playerTwoName = this.state.playerTwoName;
+        let playerOneImage = this.state.playerOneImage;
+        let playerTwoImage = this.state.playerTwoImage
 
         return (
             <div>
                 <div className='row'>
                     {!playerOneName &&
-                    <PlayerInput 
-                        id='playerOne'
-                        label='Player One'
-                        onSubmit={this.handleSubmit}
-                     /> }
+                        <PlayerInput
+                            id='playerOne'
+                            label='Player One'
+                            onSubmit={this.handleSubmit}
+                        />}
+
+                    {playerOneImage &&
+                        <PlayerPreview
+                            avatar={playerOneImage}
+                            username={playerOneName}
+                            onReset={this.handleReset}
+                            id='playerOne' />}
 
                     {!playerTwoName &&
-                    <PlayerInput
-                        id='playerTwo'
-                        label='Player Two'
-                        onSubmit={this.handleSubmit}
-                     /> }
+                        <PlayerInput
+                            id='playerTwo'
+                            label='Player Two'
+                            onSubmit={this.handleSubmit}
+                        />}
+
+                    {playerTwoImage &&
+                        <PlayerPreview
+                            avatar={playerTwoImage}
+                            username={playerTwoName}
+                            onReset={this.handleReset}
+                            id='playerTwo' />}
                 </div>
             </div>
         )
