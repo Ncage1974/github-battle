@@ -2,7 +2,7 @@ var React = require('react');
 var PropTypes = require('prop-types');
 
 function PlayerPreview(props) {
-    debugger;
+    
     return (
         
         <div>
@@ -16,7 +16,7 @@ function PlayerPreview(props) {
             </div>
             <button
                 className='reset'
-                onClick={props.onReset(null, props.id)}>
+                onClick={props.onReset.bind(this, props.id)}>
                 Reset
             </button>
         </div>
@@ -54,7 +54,7 @@ class PlayerInput extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        debugger;
+       
         this.props.onSubmit(this.props.id, this.state.username);
     }
 
