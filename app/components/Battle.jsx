@@ -1,6 +1,7 @@
 var React = require('react');
 var PropTypes = require('prop-types');
-var Link = require('react-router').Link;
+//var Link = require('react-router').Link;
+import { Link } from 'react-router-dom';
 
 function PlayerPreview(props) {
 
@@ -17,7 +18,7 @@ function PlayerPreview(props) {
             </div>
             <button
                 className='reset'
-                onClick={props.onReset.bind(this, props.id)}>
+                onClick={props.onReset.bind(null, props.id)}>
                 Reset
             </button>
         </div>
@@ -165,14 +166,16 @@ class Battle extends React.Component {
                             onReset={this.handleReset}
                             id='playerTwo' />}
                 </div>
-
                 {playerOneImage && playerTwoImage &&
                     <Link
                         className='button'
-                        to={}>
+                        to={{
+                            pathname: match.url + '/results',
+                            search: '?playerOneName=' + playerOneName + '&playerTwoName=' + playerTwoName
+                        }}>
                         Battle
-                    </Link>
-                }
+          </Link>}
+
             </div>
         )
     }
