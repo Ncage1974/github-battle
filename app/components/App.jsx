@@ -7,6 +7,7 @@ var Nav = require('./Nav.jsx');
 var Home = require('./Home.jsx');
 var Battle = require('./Battle.jsx');
 var Switch = ReactRouter.Switch;
+import Results from './Results.jsx';
 
 
 class App extends React.Component {
@@ -18,6 +19,7 @@ class App extends React.Component {
                     <Switch>
                         <Route exact path='/' component={Home} />
                         <Route exact path='/battle' component={Battle} />
+                        <Route path='/battle/results' component={Results} />
                         <Route path='/popular' component={Popular} />
                         <Route render={() => {
                             return (<p>Not Found!</p>);
