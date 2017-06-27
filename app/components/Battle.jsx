@@ -130,7 +130,8 @@ class Battle extends React.Component {
         let playerTwoName = this.state.playerTwoName;
         let playerOneImage = this.state.playerOneImage;
         let playerTwoImage = this.state.playerTwoImage;
-
+        let match = this.props.match;
+        
         return (
             <div>
                 <div className='row'>

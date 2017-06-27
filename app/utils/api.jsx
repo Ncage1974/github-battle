@@ -6,14 +6,14 @@ var parms = `?client_id=${id}&client_secret=${sec}`;
 parms = ''; //clear out because we are not using a registered user now
 
 function getProfile(username) {
-    return axios.get(`https://api.github.com/users${username + parms}`)
+    return axios.get(`https://api.github.com/users/${username}?/${parms}`)
         .then((user) => {
             return user.data;
         });
 }
 
 function getRepos(username) {
-    return axios.get(`https://api.github.com/users${username}/repos${parms}&per_page=100`);
+    return axios.get(`https://api.github.com/users/${username}/repos?${parms}&per_page=100`);
 }
 
 function getStarCount(repos) {
@@ -25,7 +25,7 @@ function getStarCount(repos) {
 function calculateScore(profile, repos) {
     let followers = profile.followers;
     let totalStars = getStarCount(repos);
-
+    debugger;
     return (followers * 3) + totalStars;
 }
 
@@ -41,7 +41,7 @@ function getUserData(player) {
     ]).then((data) => {
         let profile = data[0];
         let repos = data[1];
-
+        debugger;
         return {
             profile: profile,
             score: calculateScore(profile, repos)
@@ -53,7 +53,7 @@ function getUserData(player) {
 
 function sortPlayers (players) {
     return players.sort((player1, player2) => {
-        return player2.score = player1.score;
+        return player2.score == player1.score;
     });
 }
 
