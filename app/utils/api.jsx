@@ -51,7 +51,7 @@ function getUserData(player) {
 
 function sortPlayers (players) {
     return players.sort((player1, player2) => {
-        return player2.score === player1.score;
+        return player2.score > player1.score;
     });
 }
 
