@@ -25,7 +25,6 @@ function getStarCount(repos) {
 function calculateScore(profile, repos) {
     let followers = profile.followers;
     let totalStars = getStarCount(repos);
-    debugger;
     return (followers * 3) + totalStars;
 }
 
@@ -41,7 +40,6 @@ function getUserData(player) {
     ]).then((data) => {
         let profile = data[0];
         let repos = data[1];
-        debugger;
         return {
             profile: profile,
             score: calculateScore(profile, repos)
@@ -53,7 +51,7 @@ function getUserData(player) {
 
 function sortPlayers (players) {
     return players.sort((player1, player2) => {
-        return player2.score == player1.score;
+        return player2.score === player1.score;
     });
 }
 
