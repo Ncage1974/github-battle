@@ -3,6 +3,7 @@ import queryString from 'query-string';
 import api from '../utils/api.jsx';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import PlayerPreview from './PlayerPreview.jsx';
 
 //stateless functional componet
 function Player(props) {
