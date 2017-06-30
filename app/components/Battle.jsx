@@ -103,7 +103,7 @@ class Battle extends React.Component {
         let playerOneImage = this.state.playerOneImage;
         let playerTwoImage = this.state.playerTwoImage;
         let match = this.props.match;
-        
+
         return (
             <div>
                 <div className='row'>
@@ -117,9 +117,14 @@ class Battle extends React.Component {
                     {playerOneImage &&
                         <PlayerPreview
                             avatar={playerOneImage}
-                            username={playerOneName}
-                            onReset={this.handleReset}
-                            id='playerOne' />}
+                            username={playerOneName}>
+
+                            <button
+                                className='reset'
+                                onClick={this.handleReset.bind(null, 'playerOne')}>
+                                Reset
+                            </button>
+                        </PlayerPreview>}
 
                     {!playerTwoName &&
                         <PlayerInput
@@ -131,9 +136,14 @@ class Battle extends React.Component {
                     {playerTwoImage &&
                         <PlayerPreview
                             avatar={playerTwoImage}
-                            username={playerTwoName}
-                            onReset={this.handleReset}
-                            id='playerTwo' />}
+                            username={playerTwoName}>
+
+                            <button
+                                className='reset'
+                                onClick={this.handleReset.bind(null, 'playerTwo')}>
+                                Reset
+                            </button>
+                        </PlayerPreview>}
                 </div>
                 {playerOneImage && playerTwoImage &&
                     <Link

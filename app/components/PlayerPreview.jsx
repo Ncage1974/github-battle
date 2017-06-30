@@ -1,9 +1,8 @@
 
-import react from 'react';
+import React from 'react';
 import { PropTypes } from 'prop-types';
 
 function PlayerPreview(props) {
-
     return (
 
         <div>
@@ -15,18 +14,14 @@ function PlayerPreview(props) {
                 />
                 <h2 className='username'>@{props.username}</h2>
             </div>
-            <button
-                className='reset'
-                onClick={props.onReset.bind(null, props.id)}>
-                Reset
-            </button>
+            {props.children}
         </div>
     )
 }
 
 PlayerPreview.propTypes = {
     avatar: PropTypes.string.isRequired,
-    username: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-    onReset: PropTypes.func.isRequired
+    username: PropTypes.string.isRequired
 }
+
+module.exports = PlayerPreview; 
