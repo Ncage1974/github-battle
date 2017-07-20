@@ -19,7 +19,7 @@ class Loading extends React.Component {
 
     componentDidMount() {
         let stopper = this.props.text + '...';
-        this.interval = window.setInterval(() => {
+        this.interval = window.setInterval((() => {
             if (this.state.text === stopper) {
                 this.setState(() => {
                     return {
@@ -33,7 +33,12 @@ class Loading extends React.Component {
                     }
                 });
             }
-        }, 300)
+        }).bind(this), this.props.speed)
+    }
+
+    componentWillUnmount() {
+        console.log('clearing the interval');
+        window.clearInterval(this.interval);
     }
 
     render() {
@@ -46,11 +51,13 @@ class Loading extends React.Component {
 }
 
 Loading.PropTypes = {
-    text: PropTypes.string.isRequired
+    text: PropTypes.string.isRequired,
+    speed: PropTypes.number.isRequired
 };
 
 Loading.defaultProps = {
-    text: 'Loading'
+    text: 'Loading',
+    speed: 300
 };
 
 module.exports = Loading;
